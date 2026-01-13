@@ -39,10 +39,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 //
 `timescale 1ns/1ps
-
-
 `default_nettype none
 // }}}
+
+`define SDIO_AXI 1
 module sdio_top #(
 		// {{{
 		// LGFIFO controls the size of the internal FIFOs (in bytes).
@@ -79,18 +79,18 @@ module sdio_top #(
 		parameter	SW=32,
 		// }}}
 		// OPT_DMA: Set to 1 to include the DMA in the design
-		parameter [0:0]	OPT_DMA = 1'b1,
+		parameter [0:0]	OPT_DMA = 1'b0,
 //`ifdef	SDIO_AXI
 		// AXI_IW: ID width of the AXI interface
 		parameter	AXI_IW= 1,
 		parameter [AXI_IW-1:0]	AXI_WRITE_ID= 1'b0,
 		parameter [AXI_IW-1:0]	AXI_READ_ID = 1'b0,
 		parameter [0:0]	OPT_LITTLE_ENDIAN = 1'b1,
-		localparam	AW = ADDRESS_WIDTH,
-`else
-		parameter [0:0]	OPT_LITTLE_ENDIAN = 1'b0,
-		localparam	AW = ADDRESS_WIDTH-$clog2(DW/8),
-`endif
+		parameter	AW = ADDRESS_WIDTH,
+//`else
+//		parameter [0:0]	OPT_LITTLE_ENDIAN = 1'b0,
+//		localparam	AW = ADDRESS_WIDTH-$clog2(DW/8),
+//`endif
 		parameter	HWDELAY=0,
 		// OPT_ISTREAM: Enable an incoming AXI stream to specify data
 		// {{{
