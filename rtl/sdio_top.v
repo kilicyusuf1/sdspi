@@ -79,8 +79,8 @@ module sdio_top #(
 		parameter	SW=32,
 		// }}}
 		// OPT_DMA: Set to 1 to include the DMA in the design
-		parameter [0:0]	OPT_DMA = 1'b0,
-`ifdef	SDIO_AXI
+		parameter [0:0]	OPT_DMA = 1'b1,
+//`ifdef	SDIO_AXI
 		// AXI_IW: ID width of the AXI interface
 		parameter	AXI_IW= 1,
 		parameter [AXI_IW-1:0]	AXI_WRITE_ID= 1'b0,
